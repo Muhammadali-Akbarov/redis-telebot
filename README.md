@@ -1,7 +1,7 @@
 # Redis-Telebot v1 
 Sourcode and Resources for Telegram and Redis Integration v1
 <p align="center">
- <img src="./stat/img.jpg" width="400" style="border-radius": 50px 20px;>
+ <img src="./stat/img.jpg" width="400" style="border-radius: 10px;">
 </p>
 
 # Installation
