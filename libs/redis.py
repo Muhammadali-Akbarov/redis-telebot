@@ -8,8 +8,7 @@ from utils.to_dict import to_dict
 
 class Redis:
     __MY_CHANNEL = 'mychannel'
-    __FIXED_PRICE_DIFFERENCE = 'fixed_price_difference'
-
+    
     def __init__(self):
         self._redis = StrictRedis(**(get_env.get(('redis'))))
 
@@ -30,9 +29,10 @@ class Redis:
         for message in sub.listen():
             if message is not None and isinstance(message, dict):
                 notify = to_dict(message.get('data'))
-                if notify:
-                    if notify.get('message_type') == self.__FIXED_PRICE_DIFFERENCE:
-                        telebot.send_message(notify.get('message'))
+                if type(notify) == dict:
+                    if notify.get('chat_id') != None:
+                        if notify.get('chat_id'):
+                            telebot.send_message(notify.get('chat_id'), notify.get('message'))
 
 
 redis = Redis()

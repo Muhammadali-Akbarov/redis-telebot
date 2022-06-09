@@ -4,15 +4,14 @@ from libs.env import get_env
 
 class TeleBotClient:
     __sendMessage = "/sendMessage"
-
-    def __init__(self, api_host: str, api_token: str, chat_id: str) -> None:
-        self.__chat_id = chat_id
+    
+    def __init__(self, api_host: str, api_token: str) -> None:
         self.__main_url = f'{api_host}{api_token}'
 
-    def send_message(self, text: str) -> dict:
+    def send_message(self,chat_id: int, text: str) -> dict:
         params = {
             'text': text,
-            'chat_id': self.__chat_id,
+            'chat_id': chat_id,
             'parse_mode': 'HTML'
         }
         resp = requests.post(f'{self.__main_url}{self.__sendMessage}', params)
